@@ -11,6 +11,7 @@ private:
     int loyaltyPoints;
 
 public:
+    Customer();
     Customer(const std::string& name);
     ~Customer();
     

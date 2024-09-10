@@ -28,8 +28,15 @@ void handle_rent(const httplib::Request& req, httplib::Response& res) {
         auto customerName = req.get_param_value("customer");
         auto days_str = req.get_param_value("days");
         int days = std::stoi(days_str);
+   
+        //finding customer in table
+        if (rentalService.getLoyaltyPoints(customerName) == -1) {
+            Customer newCustomer(customerName);
+            rentalService.addCustomer(newCustomer);
+        }
 
-        Customer customer(customerName);
+        Customer customer = rentalService.getCustomer(customerName);
+
         Car* car = getCarFromType(type, model);
 
         rentalService.rentCar(customer, car, days);
@@ -73,7 +80,27 @@ void handle_showcars(const httplib::Request& req, httplib::Response& res) {
         rentalService.showInventory(responseStream);
         res.set_content(responseStream.str(), "text/plain");
     } else {
-        res.status = 405;  // Method Not Allowed
+        res.status = 405; 
+        res.set_content("Method Not Allowed", "text/plain");
+    }
+}
+
+void handle_loyalty_points(const httplib::Request& req, httplib::Response& res) {
+    if (req.method == "POST") {
+        auto customerName = req.get_param_value("customer");
+
+        int loyaltyPoints = rentalService.getLoyaltyPoints(customerName);
+
+        if (loyaltyPoints >= 0) {
+            std::stringstream responseStream;
+            responseStream << "Customer " << customerName << " has " << loyaltyPoints << " loyalty points.";
+            res.set_content(responseStream.str(), "text/plain");
+        } else {
+            res.status = 404;  
+            res.set_content("Customer not found.", "text/plain");
+        }
+    } else {
+        res.status = 405;  
         res.set_content("Method Not Allowed", "text/plain");
     }
 }
@@ -89,6 +116,7 @@ int main() {
     svr.Post("/rent", handle_rent);
     svr.Post("/return", handle_return);
     svr.Post("/cars", handle_showcars);
+    svr.Post("/loyalty", handle_loyalty_points);
 
     std::cout << "Starting server on http://localhost:8080" << std::endl;
     svr.listen("localhost", 8080);

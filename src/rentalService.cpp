@@ -18,10 +18,17 @@ void RentalService::rentCar(Customer& customer, Car* car, int days) {
     }
         
     Rental rental(car, days);
-    customer.addLoyaltyPoints(rental.getLoyaltyPoints());
+
+    if (customers.find(customer.getName()) != customers.end())
+        customers[customer.getName()].addLoyaltyPoints(rental.getLoyaltyPoints());
+    else {
+        customers[customer.getName()] = customer;
+        customers[customer.getName()].addLoyaltyPoints(rental.getLoyaltyPoints());
+    }
+
     activeRentals[customer.getName()] = rental;
 
-    std::cout << customer.getName() << " has rented a" << car->getModel() << " for " << days << " days." << std::endl;
+    std::cout << customer.getName() << " has rented a " << car->getModel() << " for " << days << " days." << std::endl;
 }
 
 
@@ -48,4 +55,27 @@ void RentalService::showInventory(std::ostream& os) const {
         if (car) 
             os << "- " << car->getModel() << std::endl;
     }
+}
+
+void RentalService::addCustomer(const Customer& customer) {
+    customers[customer.getName()] = customer;
+}
+
+int RentalService::getLoyaltyPoints(const std::string& customerName) const {
+    auto it = customers.find(customerName);
+    if (it != customers.end()) {
+        return it->second.getLoyaltyPoints();
+    } else {
+        std::cout << "Customer " << customerName << " not found!" << std::endl;
+        return -1;
+    }
+}
+
+Customer RentalService::getCustomer(const std::string& customerName) const {
+    auto it = customers.find(customerName);
+    if (it != customers.end()) {
+        return it->second;
+    }
+    
+    throw std::runtime_error("Customer not found");
 }

@@ -1,5 +1,6 @@
 #include "customer.h"
 
+Customer::Customer() : name("Unnamed"), loyaltyPoints(0) {}
 Customer::Customer(const std::string& name) : name(name), loyaltyPoints(0) {}
 
 Customer::~Customer() {}

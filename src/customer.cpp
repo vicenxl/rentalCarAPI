@@ -1,24 +1,18 @@
 #include "customer.h"
 
-class Customer {
-private:
-    std::string name;
-    int loyaltyPoints;
+Customer::Customer(const std::string& name) : name(name), loyaltyPoints(0) {}
 
-public:
-    Customer(const std::string& name) : name(name), loyaltyPoints(0) {}
+Customer::~Customer() {}
 
-    Customer::~Customer() {}
-
-    void addLoyaltyPoints(int points) {
+void Customer::addLoyaltyPoints(int points) {
         loyaltyPoints += points;
-    }
+}
 
-    int getLoyaltyPoints() const {
+int Customer::getLoyaltyPoints() const {
         return loyaltyPoints;
-    }
+}
 
-    std::string getName() const {
+std::string Customer::getName() const {
         return name;
-    }
-};
+}
+

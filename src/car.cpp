@@ -1,63 +1,52 @@
-#include "Car.h"     
+#include "Car.h"
 
-class Car {
-protected:
-    std::string model;
-    double basePrice;
-    int loyaltyPoints;
+Car::Car(const std::string& model, double basePrice, int loyaltyPoints)
+    : model(model), basePrice(basePrice), loyaltyPoints(loyaltyPoints) {}
 
-public:
-    Car(const std::string& model, double basePrice, int loyaltyPoints)
-        : model(model), basePrice(basePrice), loyaltyPoints(loyaltyPoints) {}
+Car::~Car()
+{
+}
 
-    virtual ~Car() {}
+int Car::getLoyaltyPoints() const {
+    return loyaltyPoints;
+}
 
-    virtual double calculatePrice(int days) = 0;
-    virtual double calculateExtraDayCharge(int extraDays) = 0;
+std::string Car::getModel() const {
+    return model;
+}
 
-    int getLoyaltyPoints() const { return loyaltyPoints; }
+PremiumCar::PremiumCar(const std::string& model)
+    : Car(model, 300, 5) {}
 
-    std::string getModel() const { return model; }
-};
+double PremiumCar::calculatePrice(int days) {
+    return days * basePrice;
+}
 
-class PremiumCar : public Car {
-public:
-    PremiumCar(const std::string& model) : Car(model, 300, 5) {}
+double PremiumCar::calculateExtraDayCharge(int extraDays) {
+    return extraDays * (basePrice * 1.2);
+}
 
-    double calculatePrice(int days) override {
-        return days * basePrice;
-    }
+SUVCar::SUVCar(const std::string& model)
+    : Car(model, 150, 3) {}
 
-    double calculateExtraDayCharge(int extraDays) override {
-        return extraDays * (basePrice * 1.2);
-    }
-};
+double SUVCar::calculatePrice(int days) {
+    if (days <= 7) return days * basePrice;
+    if (days <= 30) return 7 * basePrice + (days - 7) * basePrice * 0.8;
+    return 7 * basePrice + 23 * basePrice * 0.8 + (days - 30) * basePrice * 0.5;
+}
 
-class SUVCar : public Car {
-public:
-    SUVCar(const std::string& model) : Car(model, 150, 3) {}
+double SUVCar::calculateExtraDayCharge(int extraDays) {
+    return extraDays * (basePrice + 60); 
+}
 
-    double calculatePrice(int days) override {
-        if (days <= 7) return days * basePrice;
-        if (days <= 30) return 7 * basePrice + (days - 7) * basePrice * 0.8;
-        return 7 * basePrice + 23 * basePrice * 0.8 + (days - 30) * basePrice * 0.5;
-    }
+SmallCar::SmallCar(const std::string& model)
+    : Car(model, 50, 1) {}
 
-    double calculateExtraDayCharge(int extraDays) override {
-        return extraDays * (basePrice + 60); // 60% of small car price
-    }
-};
+double SmallCar::calculatePrice(int days) {
+    if (days <= 7) return days * basePrice;
+    return 7 * basePrice + (days - 7) * basePrice * 0.6;
+}
 
-class SmallCar : public Car {
-public:
-    SmallCar(const std::string& model) : Car(model, 50, 1) {}
-
-    double calculatePrice(int days) override {
-        if (days <= 7) return days * basePrice;
-        return 7 * basePrice + (days - 7) * basePrice * 0.6;
-    }
-
-    double calculateExtraDayCharge(int extraDays) override {
-        return extraDays * (basePrice * 1.3);  // 30% extra for small cars
-    }
-};
+double SmallCar::calculateExtraDayCharge(int extraDays) {
+    return extraDays * (basePrice * 1.3);  
+}

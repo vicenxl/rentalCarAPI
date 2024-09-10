@@ -25,24 +25,27 @@ void RentalService::rentCar(Customer& customer, Car* car, int days) {
 }
 
 
-void RentalService::returnCar(Customer& customer, int extraDays) {
+double RentalService::returnCar(Customer& customer, int extraDays) {
     if (activeRentals.find(customer.getName()) == activeRentals.end()) {
-        std::cout << "Error: " << customer.getName() << " don't have car rented!!" << std::endl;
-        return;
+        std::cout << "Error: " << customer.getName() << " don't have a car rented!!" << std::endl;
+        return -1.0;
     }
 
     Rental& rental = activeRentals[customer.getName()];
+
     rental.returnCar(extraDays);
-
-    double surcharge = rental.calculateTotalPrice();
-    std::cout << "The surcharge for extra days is: " << surcharge << " €" << std::endl;
-
+    double totalPrice = rental.calculateTotalPrice();
+    
     activeRentals.erase(customer.getName());
     std::cout << customer.getName() << " has returned the car." << std::endl;
+
+    return totalPrice;
 }
 
-void RentalService::showInventory() const {
-    std::cout << "Cars Inventory: " << std::endl;
-    for (const auto& car : carInventory) 
-        std::cout << "- " << car->getModel() << std::endl;
+void RentalService::showInventory(std::ostream& os) const {
+    os << "Cars Inventory: " << std::endl;
+    for (const auto& car : carInventory) {
+        if (car) 
+            os << "- " << car->getModel() << std::endl;
+    }
 }

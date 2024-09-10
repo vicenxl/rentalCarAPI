@@ -14,7 +14,7 @@ private:
 public:
     void addCar(Car* car) ;
     void rentCar(Customer& customer, Car* car, int days); 
-    void returnCar(Customer& customer, int extraDays);
-    void showInventory() const;
+    double returnCar(Customer& customer, int extraDays);
+    void showInventory(std::ostream& os) const;
 };
 

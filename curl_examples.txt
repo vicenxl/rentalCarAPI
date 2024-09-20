@@ -1,0 +1,136 @@
+** Visual Studio 2017 Developer Command Prompt v15.9.62
+** Copyright (c) 2017 Microsoft Corporation
+**********************************************************************
+
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional>cd /
+
+C:\>cd Users
+
+C:\Users>cd vdiaz2
+
+C:\Users\vdiaz2>cd Documents
+
+C:\Users\vdiaz2\Documents>cd rentalCarService
+
+C:\Users\vdiaz2\Documents\rentalCarService>code .
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/showcars
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/cars
+Cars Inventory:
+- BMW 7
+- Kia Sorento
+- Nissan Juke
+- Seat Ibiza
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=10&customer=chente"
+Car rented: BMW 7 for 10 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=2&customer=chente"
+Car returned. Total cost: 3720 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/cars
+Cars Inventory:
+- BMW 7
+- Kia Sorento
+- Nissan Juke
+- Seat Ibiza
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=10&customer=chente"
+Car rented: BMW 7 for 10 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=6&customer=chente"
+Car returned. Total cost: 5160 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=1&cust
+omer=chente"
+Car rented: BMW 7 for 1 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=1&customer=chente"
+Car returned. Total cost: 660 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=Kia+Sorento&type=SUV&days=1&cu
+stomer=viki"
+curl: (52) Empty reply from server
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=Kia+Sorento&type=SUV&days=5&cu
+stomer=viki"
+Car rented: Kia Sorento for 5 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer not found.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=viki"
+Customer viki has 3 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=viki"
+curl: (7) Failed to connect to localhost port 8080 after 2230 ms: Couldn't connect to server
+** Visual Studio 2017 Developer Command Prompt v15.9.62
+** Copyright (c) 2017 Microsoft Corporation
+**********************************************************************
+
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional>cd /
+
+C:\>cd Users
+
+C:\Users>cd vdiaz2
+
+C:\Users\vdiaz2>cd Documents
+
+C:\Users\vdiaz2\Documents>cd rentalCarService
+
+C:\Users\vdiaz2\Documents\rentalCarService>code .
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/showcars
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/cars
+Cars Inventory:
+- BMW 7
+- Kia Sorento
+- Nissan Juke
+- Seat Ibiza
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=10&customer=chente"
+Car rented: BMW 7 for 10 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=2&customer=chente"
+Car returned. Total cost: 3720 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/cars
+Cars Inventory:
+- BMW 7
+- Kia Sorento
+- Nissan Juke
+- Seat Ibiza
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=10&customer=chente"
+Car rented: BMW 7 for 10 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=6&customer=chente"
+Car returned. Total cost: 5160 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=BMW+7&type=Premium&days=1&cust
+omer=chente"
+Car rented: BMW 7 for 1 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer chente has 0 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/return?extraDays=1&customer=chente"
+Car returned. Total cost: 660 €
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=Kia+Sorento&type=SUV&days=1&cu
+stomer=viki"
+curl: (52) Empty reply from server
+
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/rent?model=Kia+Sorento&type=SUV&days=5&cu
+stomer=viki"
+Car rented: Kia Sorento for 5 days.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=chente"
+Customer not found.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=viki"
+Customer viki has 3 loyalty points.
+C:\Users\vdiaz2\Documents\rentalCarService>curl -X POST "http://localhost:8080/loyalty?customer=viki"
+curl: (7) Failed to connect to localhost port 8080 after 2230 ms: Couldn't connect to server
